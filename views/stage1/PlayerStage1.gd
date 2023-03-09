@@ -1,0 +1,82 @@
+extends Area2D
+
+"""
+1 -> solid
+2 -> enemy
+3 -> player
+"""
+
+var alive = true
+var canMove = true
+
+var maxSpeed = 3
+var acc = 1
+var fricc = 1
+var speed: Vector2 = Vector2.ZERO
+
+func _physics_process(delta):
+	var hKey = 0
+	var vKey = 0
+	
+	if canMove:
+		hKey = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+		vKey = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	
+	if abs(hKey):
+		speed.x += hKey * acc
+	else:
+		# friction
+		if (abs(speed.x) <= fricc):
+			speed.x = 0
+		elif (abs(speed.x)):
+			speed.x = max(0, abs(speed.x) - fricc) * sign(speed.x)
+			pass
+		else:
+			speed.x = 0
+			
+	if abs(vKey):
+		speed.y += vKey * acc
+	else:
+		# friction
+		if (abs(speed.y) <= fricc):
+			speed.y = 0
+		elif (abs(speed.y)):
+			speed.y = max(0, abs(speed.y) - fricc) * sign(speed.y)
+			pass
+		else:
+			speed.y = 0
+		
+	# clamp
+	speed.x = sign(speed.x) * min(abs(speed.x), abs(maxSpeed))
+	speed.y = sign(speed.y) * min(abs(speed.y), abs(maxSpeed))
+	
+	# apply movement
+	if alive:
+		self.custom_move(speed)
+
+func custom_move(speed: Vector2):
+	
+	
+	"""
+	var entity = Rect2Col.collision_check(self, global_position + Vector2(0, speed.y), "enemies")
+	if (entity):
+		dead
+	"""
+	
+	if !Rect2Col.collision_check(self, global_position + Vector2(0, speed.y)):
+		global_position.y += speed.y
+	else:
+		for i in range(1, abs(int(speed.y))):
+			if !Rect2Col.collision_check(self, global_position + Vector2(0, sign(speed.y))):
+				global_position.y += sign(speed.y)
+			else:
+				break
+	
+	if !Rect2Col.collision_check(self, global_position + Vector2(speed.x, 0)):
+		global_position.x += speed.x
+	else:
+		for i in range(1, abs(int(speed.x))):
+			if !Rect2Col.collision_check(self, global_position + Vector2(sign(speed.x), 0)):
+				global_position.x += sign(speed.x)
+			else:
+				break
