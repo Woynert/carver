@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/sprites/background/street.png" type="Texture" id=1]
 [ext_resource path="res://views/stage1/parallaxAuto.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://views/stage1/EnemyGenerator.gd" type="Script" id=7]
 [ext_resource path="res://ui/scoreCounter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://components/SyncScrollSpeedComponent.gd" type="Script" id=9]
+[ext_resource path="res://ui/trackProgressBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 146.75, 12 )
@@ -101,5 +102,7 @@ position = Vector2( 312, 121 )
 
 [node name="ScoreCounter" parent="CanvasLayerUI" instance=ExtResource( 8 )]
 z_index = 1346
+
+[node name="TrackProgressBar" parent="CanvasLayerUI" instance=ExtResource( 10 )]
 
 [connection signal="timeout" from="EnemyGenerator/Timer" to="EnemyGenerator" method="_on_Timer_timeout"]

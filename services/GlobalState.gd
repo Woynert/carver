@@ -1,7 +1,8 @@
 extends Node
 
 # constants
-const SCORE_HARD_TOGGLE = 12
+const SCORE_HARD_TOGGLE = 15
+const SCORE_TO_NEXT_STAGE = 50
 
 # signals
 signal sig_update_score
