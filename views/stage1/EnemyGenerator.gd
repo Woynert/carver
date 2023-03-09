@@ -24,3 +24,4 @@ func _on_Timer_timeout():
 		ob.global_position.x = $top.global_position.x
 		ob.global_position.y = rand_range($top.global_position.y, $bottom.global_position.y)
 		
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sprites/background/street.png" type="Texture" id=1]
 [ext_resource path="res://views/stage1/parallaxAuto.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sprites/background/street-trees.png" type="Texture" id=5]
 [ext_resource path="res://npc/obstacleCones.tscn" type="PackedScene" id=6]
 [ext_resource path="res://views/stage1/EnemyGenerator.gd" type="Script" id=7]
+[ext_resource path="res://ui/scoreCounter.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 146.75, 12 )
@@ -15,10 +16,6 @@ extents = Vector2( 146.75, 12 )
 extents = Vector2( 12.9375, 76.5 )
 
 [node name="Stage1" type="Node2D"]
-
-[node name="PlayerStage1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 61, 127 )
-z_as_relative = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 2 )
@@ -34,11 +31,15 @@ __meta__ = {
 texture = ExtResource( 1 )
 centered = false
 
+[node name="PlayerStage1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 61, 127 )
+
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-layer = 100
+layer = 1
 script = ExtResource( 2 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+z_index = 50
 motion_mirroring = Vector2( 280, 0 )
 __meta__ = {
 "_edit_group_": true,
@@ -46,6 +47,8 @@ __meta__ = {
 }
 
 [node name="StreetTrees" type="Sprite" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = 50
+z_as_relative = false
 texture = ExtResource( 5 )
 centered = false
 
@@ -86,5 +89,10 @@ position = Vector2( 312, 43 )
 
 [node name="bottom" type="Position2D" parent="EnemyGenerator"]
 position = Vector2( 312, 121 )
+
+[node name="CanvasLayerUI" type="CanvasLayer" parent="."]
+
+[node name="ScoreCounter" parent="CanvasLayerUI" instance=ExtResource( 8 )]
+z_index = 1346
 
 [connection signal="timeout" from="EnemyGenerator/Timer" to="EnemyGenerator" method="_on_Timer_timeout"]

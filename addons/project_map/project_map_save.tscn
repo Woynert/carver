@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/project_map/project_map.gd" type="Script" id=1]
 [ext_resource path="res://addons/project_map/pm_comment_node.tscn" type="PackedScene" id=2]
@@ -11,6 +11,10 @@ bg_color = Color( 0.2, 0.231373, 0.309804, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
 [node name="ProjectMap" type="GraphEdit"]
 margin_right = 865.0
 margin_bottom = 500.0
@@ -18,8 +22,11 @@ rect_min_size = Vector2( 500, 500 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/bg = SubResource( 1 )
-scroll_offset = Vector2( 116, -172 )
+scroll_offset = Vector2( -159.85, -221.8 )
 snap_distance = 32
+zoom = 0.9
+minimap_enabled = false
+minimap_size = Vector2( 210, 136 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
@@ -27,16 +34,16 @@ __meta__ = {
 }
 
 [node name="CommentNode" type="GraphNode" parent="." instance=ExtResource( 2 )]
-margin_left = 108.0
-margin_top = 34.0
-margin_right = 603.0
-margin_bottom = 389.0
+margin_left = 361.45
+margin_top = 97.5999
+margin_right = 856.45
+margin_bottom = 452.6
 rect_min_size = Vector2( 495, 355 )
+rect_scale = Vector2( 0.9, 0.9 )
 mouse_filter = 1
 custom_styles/commentfocus = SubResource( 2 )
 custom_styles/comment = SubResource( 3 )
 offset = Vector2( 224, -138 )
-resizable = true
 comment = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
@@ -48,7 +55,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-comment_text = "Indexes
+comment_text = "Z INDEXES
 
 Background 0
 
@@ -56,9 +63,38 @@ Enemy 5
 Player 10
 Particle 20
 
-Parallax front 100
+Parallax front 50
 
-UI 2000"
+UI 100"
 comment_rect = Vector2( 495, 355 )
+
+[node name="CommentNode2" type="GraphNode" parent="." instance=ExtResource( 2 )]
+margin_left = 20.85
+margin_top = 96.5999
+margin_right = 420.85
+margin_bottom = 296.6
+rect_min_size = Vector2( 400, 200 )
+rect_scale = Vector2( 0.9, 0.9 )
+mouse_filter = 1
+custom_styles/commentfocus = SubResource( 6 )
+custom_styles/comment = SubResource( 7 )
+offset = Vector2( -154.444, -139.111 )
+comment = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+comment_text = "COLLISION GROUPS
+
+solid (default)
+enemy
+point
+"
 
 [connection signal="delete_nodes_request" from="." to="." method="_on_GraphEdit_delete_nodes_request"]

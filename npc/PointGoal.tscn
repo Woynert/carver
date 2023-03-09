@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://services/Rect2CollisionComponent.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 100 )
+
+[node name="PointGoal" type="Area2D"]
+
+[node name="Rect2CollisionComponent" type="Node" parent="."]
+script = ExtResource( 1 )
+nodeGroup = "point"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

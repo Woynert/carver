@@ -9,7 +9,7 @@ extends Area2D
 var alive = true
 var canMove = true
 
-var maxSpeed = 3
+var maxSpeed = 2
 var acc = 1
 var fricc = 1
 var speed: Vector2 = Vector2.ZERO
@@ -53,6 +53,18 @@ func _physics_process(delta):
 	# apply movement
 	if alive:
 		self.custom_move(speed)
+		
+	# check for extra collisions interactions
+	collisions()
+	
+func collisions():
+	
+	# point
+	var point = Rect2Col.collision_check(self, global_position, "point")
+	if (point):
+		point.queue_free()
+		GlobalState.add_score()
+	
 
 func custom_move(speed: Vector2):
 	
