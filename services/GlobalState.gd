@@ -4,8 +4,8 @@ extends Node
 const SCORE_HARD_TOGGLE = 15
 const INITIAL_SCROLL_SPEED = -1
 
-const SCORE_FINISH_FIRST_STAGE = 50
-const SCORE_FINISH_SECOND_STAGE = 50
+const SCORE_FINISH_FIRST_STAGE = 10
+const SCORE_FINISH_SECOND_STAGE = 10
 var score_finish_stage = SCORE_FINISH_FIRST_STAGE
 
 # signals
@@ -69,7 +69,7 @@ func stage_retry():
 	if (stage == 1):
 		get_tree().change_scene("res://views/stage1/stage1.tscn")
 	elif (stage == 2):
-		get_tree().change_scene("res://views/stage1/stage1.tscn")
+		get_tree().change_scene("res://views/stage2/stage2.tscn")
 	
 func set_stage(stage):
 	self.stage = stage
@@ -78,5 +78,5 @@ func die():
 	if (stage == 1):
 		get_tree().change_scene("res://views/deathscreen1.tscn")
 	elif (stage == 2):
-		get_tree().change_scene("res://views/deathscreen1.tscn")
+		get_tree().change_scene("res://views/deathscreen2.tscn")
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/finalscreen2.png-6cbe7bdf9d2fef8b743d8dfda409846d.stex"
+path="res://.import/youwin.png-e48907f1e991ede20bcf1e54b6792f56.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background/finalscreen2.png"
-dest_files=[ "res://.import/finalscreen2.png-6cbe7bdf9d2fef8b743d8dfda409846d.stex" ]
+source_file="res://assets/sprites/background/youwin.png"
+dest_files=[ "res://.import/youwin.png-e48907f1e991ede20bcf1e54b6792f56.stex" ]
 
 [params]
 

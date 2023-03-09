@@ -1,19 +1,15 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/sprites/background/clouds-1.png" type="Texture" id=1]
 [ext_resource path="res://views/stage1/parallaxAuto.gd" type="Script" id=2]
 [ext_resource path="res://components/Rect2CollisionComponent.gd" type="Script" id=3]
 [ext_resource path="res://views/stage1/PlayerStage1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/background/clouds-2.png" type="Texture" id=5]
-[ext_resource path="res://npc/obstacleCones.tscn" type="PackedScene" id=6]
-[ext_resource path="res://views/stage1/EnemyGenerator.gd" type="Script" id=7]
+[ext_resource path="res://assets/sprites/background/youwin.png" type="Texture" id=6]
+[ext_resource path="res://ui/button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/scoreCounter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://components/SyncScrollSpeedComponent.gd" type="Script" id=9]
-[ext_resource path="res://ui/trackProgressBar.tscn" type="PackedScene" id=10]
-[ext_resource path="res://npc/obstacleCats.tscn" type="PackedScene" id=11]
-[ext_resource path="res://npc/obstacleKites.tscn" type="PackedScene" id=12]
-[ext_resource path="res://npc/obstacleCopter2.tscn" type="PackedScene" id=13]
-[ext_resource path="res://npc/obstacleCopter1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://views/endscreen/endscreen.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 146.75, 12 )
@@ -21,7 +17,8 @@ extents = Vector2( 146.75, 12 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 12.9375, 81.25 )
 
-[node name="Stage2" type="Node2D"]
+[node name="EndScreen" type="Node2D"]
+script = ExtResource( 10 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 2 )
@@ -65,7 +62,14 @@ centered = false
 position = Vector2( 89, 80 )
 showWings = true
 
+[node name="ScoreCounter" parent="PlayerStage1" instance=ExtResource( 8 )]
+position = Vector2( -142, -33 )
+z_index = 1346
+
 [node name="boundaries" type="Area2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Rect2CollisionComponent" type="Node" parent="boundaries"]
 script = ExtResource( 3 )
@@ -86,30 +90,14 @@ shape = SubResource( 2 )
 position = Vector2( -8, 81 )
 shape = SubResource( 2 )
 
-[node name="Obstacle" parent="." instance=ExtResource( 6 )]
-position = Vector2( -46, 88 )
-
-[node name="EnemyGenerator" type="Node2D" parent="."]
-script = ExtResource( 7 )
-obstacles_easy = [ ExtResource( 11 ), ExtResource( 12 ) ]
-obstacles_hard = [ ExtResource( 14 ), ExtResource( 13 ) ]
-
-[node name="Timer" type="Timer" parent="EnemyGenerator"]
-process_mode = 0
-wait_time = 1.5
-autostart = true
-
-[node name="top" type="Position2D" parent="EnemyGenerator"]
-position = Vector2( 312, 23 )
-
-[node name="bottom" type="Position2D" parent="EnemyGenerator"]
-position = Vector2( 312, 139 )
-
 [node name="CanvasLayerUI" type="CanvasLayer" parent="."]
 
-[node name="ScoreCounter" parent="CanvasLayerUI" instance=ExtResource( 8 )]
-z_index = 1346
+[node name="Youwin" type="Sprite" parent="CanvasLayerUI"]
+position = Vector2( 151, 69 )
+texture = ExtResource( 6 )
 
-[node name="TrackProgressBar" parent="CanvasLayerUI" instance=ExtResource( 10 )]
+[node name="btnReturn" parent="CanvasLayerUI" instance=ExtResource( 7 )]
+position = Vector2( 205, 132 )
+text = "Return"
 
-[connection signal="timeout" from="EnemyGenerator/Timer" to="EnemyGenerator" method="_on_Timer_timeout"]
+[connection signal="clicked" from="CanvasLayerUI/btnReturn" to="." method="_on_btnReturn_clicked"]

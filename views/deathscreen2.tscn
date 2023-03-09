@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/sprites/background/clouds-1.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/background/gameover.png" type="Texture" id=2]
+[ext_resource path="res://ui/button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/scoreCounter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://views/deathscreen.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/background/finalscreen2.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/background/finalscreen2-car.png" type="Texture" id=7]
+
+[node name="DeathScreen2" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Clouds-1" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.4599, 0.63, 0.50526, 1 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Finalscreen2" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Gameover" type="Sprite" parent="."]
+position = Vector2( 141, 90 )
+texture = ExtResource( 2 )
+
+[node name="btnRetry" parent="." instance=ExtResource( 3 )]
+position = Vector2( 97, 137 )
+text = "Retry"
+
+[node name="btnBack" parent="." instance=ExtResource( 3 )]
+position = Vector2( 180, 137 )
+text = "Back"
+
+[node name="ScoreCounter" parent="." instance=ExtResource( 4 )]
+position = Vector2( -65, 36 )
+prepend = "score "
+
+[node name="Finalscreen2-car" type="Sprite" parent="."]
+position = Vector2( 78, 69 )
+texture = ExtResource( 7 )
+
+[connection signal="clicked" from="btnRetry" to="." method="_on_btnRetry_clicked"]
+[connection signal="clicked" from="btnBack" to="." method="_on_btnBack_clicked"]

@@ -1,10 +1,6 @@
 extends Area2D
 
-"""
-1 -> solid
-2 -> enemy
-3 -> player
-"""
+export var showWings = false
 
 var alive = true
 var canMove = true
@@ -13,6 +9,10 @@ var maxSpeed = 2
 var acc = 1
 var fricc = 1
 var speed: Vector2 = Vector2.ZERO
+
+func _ready():
+	$Car1.visible = !showWings
+	$CarWings.visible = showWings
 
 func _physics_process(delta):
 	var hKey = 0
