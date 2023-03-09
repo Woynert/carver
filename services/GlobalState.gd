@@ -44,8 +44,15 @@ func get_scroll_speed():
 # scene management
 var stage = 1
 func stage_retry():
+	reset()
 	if (stage == 1):
 		get_tree().change_scene("res://views/stage1/stage1.tscn")
 	elif (stage == 2):
 		get_tree().change_scene("res://views/stage1/stage1.tscn")
+	
+func die():
+	if (stage == 1):
+		get_tree().change_scene("res://views/deathscreen1.tscn")
+	elif (stage == 2):
+		get_tree().change_scene("res://views/deathscreen1.tscn")
 	

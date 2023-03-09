@@ -64,7 +64,10 @@ func collisions():
 	if (point):
 		point.queue_free()
 		GlobalState.add_score()
-	
+		
+	# obstacle
+	if (Rect2Col.collision_check(self, global_position, "enemy")):
+		GlobalState.die()
 
 func custom_move(speed: Vector2):
 	
