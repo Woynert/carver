@@ -22,12 +22,18 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Rect2CollisionComponent",
 "language": "GDScript",
-"path": "res://services/Rect2CollisionComponent.gd"
+"path": "res://components/Rect2CollisionComponent.gd"
+}, {
+"base": "Node",
+"class": "SyncScrollSpeedComponent",
+"language": "GDScript",
+"path": "res://components/SyncScrollSpeedComponent.gd"
 } ]
 _global_script_class_icons={
 "CommonNode": "",
 "Rect2Col": "",
-"Rect2CollisionComponent": ""
+"Rect2CollisionComponent": "",
+"SyncScrollSpeedComponent": ""
 }
 
 [application]

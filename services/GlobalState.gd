@@ -1,19 +1,24 @@
 extends Node
 
 # constants
-const SCROLL_SPEED = -1
 
 # signals
 signal sig_update_score
+signal sig_update_speed
+
+
+func reset():
+	score = 0
+	scroll_speed = INITIAL_SCROLL_SPEED
+	emit_signal("sig_update_score")
+	emit_signal("sig_update_speed")
 
 # score
 var score = 0
-func reset_score():
-	score = 0
-	emit_signal("sig_update_score")
 func add_score():
 	score += 1
 	emit_signal("sig_update_score")
+	increase_scroll_speed()
 func get_score():
 	return score
 
@@ -23,6 +28,18 @@ func set_record(record):
 	self.record = record
 func get_record():
 	return record
+
+# speed
+const INITIAL_SCROLL_SPEED = -1
+var scroll_speed = -1
+var scroll_acc = -0.1
+func increase_scroll_speed():
+	scroll_speed += scroll_acc
+	emit_signal("sig_update_speed")
+func set_scroll_speed(scroll_speed):
+	self.scroll_speed = scroll_speed
+func get_scroll_speed():
+	return scroll_speed
 
 # scene management
 var stage = 1
