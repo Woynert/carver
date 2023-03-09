@@ -7,4 +7,4 @@ func _ready():
 	on_update_score()
 
 func on_update_score():
-	$barFill.rect_size.x = FILL_INITIAL_LENGTH * min(1, (float(GlobalState.get_score()) / GlobalState.score_finish_stage))
+	$barFill.rect_size.x = FILL_INITIAL_LENGTH * min(1, (float(GlobalState.get_score() - ((GlobalState.stage-1) * GlobalState.score_finish_stage) ) / GlobalState.score_finish_stage))
