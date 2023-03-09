@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/sprites/npc/copter2-2.png" type="Texture" id=1]
+[ext_resource path="res://components/Rect2CollisionComponent.gd" type="Script" id=2]
+[ext_resource path="res://npc/obstacleObject.gd" type="Script" id=3]
+[ext_resource path="res://npc/PointGoal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://components/SyncScrollSpeedComponent.gd" type="Script" id=5]
+[ext_resource path="res://assets/sprites/npc/copter2-1.png" type="Texture" id=6]
+[ext_resource path="res://npc/randomSkin.gd" type="Script" id=7]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 7 )
+
+[node name="Obstacle" type="Area2D"]
+z_index = 7
+script = ExtResource( 3 )
+extraSpeedPercentage = 0.5
+
+[node name="Rect2CollisionComponent" type="Node" parent="."]
+script = ExtResource( 2 )
+nodeGroup = "enemy"
+
+[node name="SyncScrollSpeedComponent" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="visual" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="AnimatedSprite1" type="AnimatedSprite" parent="visual"]
+frames = SubResource( 2 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -3, -3 )
+shape = SubResource( 1 )
+
+[node name="PointGoal" parent="." instance=ExtResource( 4 )]
+position = Vector2( 19, 0 )
