@@ -22,7 +22,7 @@ extents = Vector2( 16, 7 )
 [node name="Obstacle" type="Area2D"]
 z_index = 7
 script = ExtResource( 3 )
-extraSpeedPercentage = 0.5
+extraSpeedPercentage = 0.6
 
 [node name="Rect2CollisionComponent" type="Node" parent="."]
 script = ExtResource( 2 )

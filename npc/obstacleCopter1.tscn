@@ -22,7 +22,7 @@ extents = Vector2( 16, 7 )
 [node name="Obstacle" type="Area2D"]
 z_index = 7
 script = ExtResource( 3 )
-extraSpeedPercentage = 0.5
+extraSpeedPercentage = 0.4
 
 [node name="Rect2CollisionComponent" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -36,7 +36,6 @@ script = ExtResource( 7 )
 
 [node name="AnimatedSprite1" type="AnimatedSprite" parent="visual"]
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
