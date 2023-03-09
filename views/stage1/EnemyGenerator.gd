@@ -2,27 +2,18 @@ extends Node2D
 
 onready var obstacles = []
 
-onready var obstacles_easy = [
-	preload("res://npc/obstacleCones.tscn"),
-	preload("res://npc/obstacleWaste.tscn")
-	]
-
-onready var obstacles_hard = [
-	preload("res://npc/obstacleCones.tscn"),
-	preload("res://npc/obstacleWaste.tscn"),
-	preload("res://npc/obstacleTruck.tscn"),
-	preload("res://npc/obstacleCar.tscn")
-	]
+export(Array, Resource) var obstacles_easy: Array
+export(Array, Resource) var obstacles_hard: Array
 
 func _ready():
 	randomize()
 
 func _on_Timer_timeout():
+	obstacles = []
+	obstacles.append_array(obstacles_easy)
 	
-	if (GlobalState.get_score() < GlobalState.SCORE_HARD_TOGGLE):
-		obstacles = obstacles_easy
-	else:
-		obstacles = obstacles_hard
+	if (GlobalState.get_score() >= GlobalState.SCORE_HARD_TOGGLE):
+		obstacles.append_array(obstacles_hard)
 	
 	# pick random obstacle
 	var objId = randi() % obstacles.size()
