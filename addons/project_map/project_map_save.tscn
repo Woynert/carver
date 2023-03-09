@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/project_map/project_map.gd" type="Script" id=1]
+[ext_resource path="res://addons/project_map/pm_comment_node.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/project_map/pm_comment_node.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="ProjectMap" type="GraphEdit"]
+margin_right = 865.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 500, 500 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 1 )
+scroll_offset = Vector2( 116, -172 )
+snap_distance = 32
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CommentNode" type="GraphNode" parent="." instance=ExtResource( 2 )]
+margin_left = 108.0
+margin_top = 34.0
+margin_right = 603.0
+margin_bottom = 389.0
+rect_min_size = Vector2( 495, 355 )
+mouse_filter = 1
+custom_styles/commentfocus = SubResource( 2 )
+custom_styles/comment = SubResource( 3 )
+offset = Vector2( 224, -138 )
+resizable = true
+comment = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+comment_text = "Indexes
+
+Background 0
+
+Enemy 5
+Player 10
+Particle 20
+
+Parallax front 100
+
+UI 2000"
+comment_rect = Vector2( 495, 355 )
+
+[connection signal="delete_nodes_request" from="." to="." method="_on_GraphEdit_delete_nodes_request"]
