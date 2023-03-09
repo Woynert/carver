@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/car2_1.png-e287cedbfe1cca18ad5cd81ac0e3f47f.stex"
+path="res://.import/car2-1.png-83ef702845f588d4bfe81ced0a8138e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/npc/car2_1.png"
-dest_files=[ "res://.import/car2_1.png-e287cedbfe1cca18ad5cd81ac0e3f47f.stex" ]
+source_file="res://assets/pixelorama/car2-1.png"
+dest_files=[ "res://.import/car2-1.png-83ef702845f588d4bfe81ced0a8138e8.stex" ]
 
 [params]
 

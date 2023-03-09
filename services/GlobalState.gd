@@ -1,11 +1,11 @@
 extends Node
 
 # constants
+const SCORE_HARD_TOGGLE = 12
 
 # signals
 signal sig_update_score
 signal sig_update_speed
-
 
 func reset():
 	score = 0
@@ -47,6 +47,12 @@ func get_scroll_speed():
 
 # scene management
 var stage = 1
+
+func start_game():
+	stage = 1
+	reset()
+	get_tree().change_scene("res://views/stage1/stage1.tscn")
+
 func stage_retry():
 	reset()
 	if (stage == 1):

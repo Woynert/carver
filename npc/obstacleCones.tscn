@@ -29,3 +29,4 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="PointGoal" parent="." instance=ExtResource( 4 )]
+position = Vector2( 10, 0 )

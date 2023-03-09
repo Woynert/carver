@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/car2.png-5571e2e274ad156b4bfe0dd0d6494d24.stex"
+path="res://.import/car2.png-aaa720961f3243d272ceab4044a95a6b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/npc/car2.png"
-dest_files=[ "res://.import/car2.png-5571e2e274ad156b4bfe0dd0d6494d24.stex" ]
+source_file="res://assets/pixelorama/car2.png"
+dest_files=[ "res://.import/car2.png-aaa720961f3243d272ceab4044a95a6b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
