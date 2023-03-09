@@ -2,7 +2,11 @@ extends Node
 
 # constants
 const SCORE_HARD_TOGGLE = 15
-const SCORE_TO_NEXT_STAGE = 50
+const INITIAL_SCROLL_SPEED = -1
+
+const SCORE_FINISH_FIRST_STAGE = 50
+const SCORE_FINISH_SECOND_STAGE = 50
+var score_finish_stage = SCORE_FINISH_FIRST_STAGE
 
 # signals
 signal sig_update_score
@@ -10,10 +14,9 @@ signal sig_update_speed
 
 func reset():
 	score = 0
-	scroll_speed = INITIAL_SCROLL_SPEED
+	set_scroll_speed(INITIAL_SCROLL_SPEED)
 	emit_signal("sig_update_score")
-	emit_signal("sig_update_speed")
-
+	
 # score
 var score = 0
 func add_score():
@@ -24,6 +27,13 @@ func add_score():
 	# set record
 	set_record(max(get_record(), score))
 	
+	if (score >= score_finish_stage):
+		set_stage(self.stage+1)
+		
+		if (self.stage == 2):
+			set_scroll_speed(INITIAL_SCROLL_SPEED)
+			get_tree().change_scene("res://views/transitionStage/transitionStage.tscn")
+
 func get_score():
 	return score
 
@@ -35,14 +45,14 @@ func get_record():
 	return record
 
 # speed
-const INITIAL_SCROLL_SPEED = -1
-var scroll_speed = -1
+var scroll_speed = INITIAL_SCROLL_SPEED
 var scroll_acc = -0.1
 func increase_scroll_speed():
 	scroll_speed += scroll_acc
 	emit_signal("sig_update_speed")
 func set_scroll_speed(scroll_speed):
 	self.scroll_speed = scroll_speed
+	emit_signal("sig_update_speed")
 func get_scroll_speed():
 	return scroll_speed
 
@@ -60,6 +70,9 @@ func stage_retry():
 		get_tree().change_scene("res://views/stage1/stage1.tscn")
 	elif (stage == 2):
 		get_tree().change_scene("res://views/stage1/stage1.tscn")
+	
+func set_stage(stage):
+	self.stage = stage
 	
 func die():
 	if (stage == 1):

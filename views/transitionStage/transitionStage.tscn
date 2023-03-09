@@ -1,0 +1,173 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/sprites/background/street.png" type="Texture" id=1]
+[ext_resource path="res://views/stage1/parallaxAuto.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/npc/car1-fly.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/obstacle/ramp.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/background/street-trees.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/npc/car1.png" type="Texture" id=6]
+[ext_resource path="res://views/transitionStage/actoRamp.gd" type="Script" id=7]
+[ext_resource path="res://views/transitionStage/actorStage.gd" type="Script" id=8]
+[ext_resource path="res://components/SyncScrollSpeedComponent.gd" type="Script" id=9]
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "transition"
+
+[sub_resource type="AnimationNodeBlendTree" id=4]
+graph_offset = Vector2( 21, 57 )
+nodes/Animation/node = SubResource( 5 )
+nodes/Animation/position = Vector2( 80, 140 )
+nodes/output/position = Vector2( 500, 140 )
+node_connections = [ "output", 0, "Animation" ]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("actors/car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 143, 80 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("actors/car:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "transition"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("actors/car/Car1-fly:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("actors/car:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.9, 3, 3.1, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 3.4822 ),
+"update": 0,
+"values": [ Vector2( 44, 80 ), Vector2( 174, 80 ), Vector2( 174, 80 ), Vector2( 199, 32 ), Vector2( 257, -44 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("actors/car:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.9, 3, 3.1, 3.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -31.504, -37.9432, -44.3824 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("actors/car/Car1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Stage1" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 2 )
+
+[node name="SyncScrollSpeedComponent" type="Node" parent="ParallaxBackground"]
+script = ExtResource( 9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 280, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Street" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = 1
+script = ExtResource( 2 )
+
+[node name="SyncScrollSpeedComponent" type="Node" parent="ParallaxBackground2"]
+script = ExtResource( 9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+z_index = 50
+motion_mirroring = Vector2( 280, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="StreetTrees" type="Sprite" parent="ParallaxBackground2/ParallaxLayer"]
+z_index = 50
+z_as_relative = false
+texture = ExtResource( 5 )
+centered = false
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 4 )
+anim_player = NodePath("../AnimationPlayer")
+process_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+method_call_mode = 1
+anims/RESET = SubResource( 2 )
+anims/transition = SubResource( 1 )
+
+[node name="actors" type="Node2D" parent="."]
+
+[node name="Ramp" type="Sprite" parent="actors"]
+position = Vector2( 1108, 80 )
+texture = ExtResource( 4 )
+script = ExtResource( 7 )
+
+[node name="car" type="Node2D" parent="actors"]
+position = Vector2( 143, 80 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Car1" type="Sprite" parent="actors/car"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="Car1-fly" type="Sprite" parent="actors/car"]
+visible = false
+texture = ExtResource( 3 )
