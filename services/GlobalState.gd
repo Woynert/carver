@@ -1,5 +1,9 @@
 extends Node
 
+# constants
+const SCROLL_SPEED = -1
+
+# vars
 var score = 0
 var record = 0
 

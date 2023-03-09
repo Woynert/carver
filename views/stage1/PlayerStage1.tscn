@@ -8,6 +8,7 @@
 extents = Vector2( 16, 8 )
 
 [node name="PlayerStage1" type="Area2D"]
+z_index = 10
 script = ExtResource( 3 )
 
 [node name="Rect2CollisionComponent" type="Node" parent="."]
