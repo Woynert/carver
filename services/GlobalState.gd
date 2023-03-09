@@ -19,6 +19,10 @@ func add_score():
 	score += 1
 	emit_signal("sig_update_score")
 	increase_scroll_speed()
+	
+	# set record
+	set_record(max(get_record(), score))
+	
 func get_score():
 	return score
 
