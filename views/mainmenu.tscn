@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/background/mainscreen_1.png" type="Texture" id=1]
+[ext_resource path="res://views/mainmenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/background/game-title_1.png" type="Texture" id=3]
+[ext_resource path="res://ui/button.tscn" type="PackedScene" id=4]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 140, 80 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Game-title1" type="Sprite" parent="."]
+position = Vector2( 139, 97 )
+texture = ExtResource( 3 )
+
+[node name="btnPlay" parent="." instance=ExtResource( 4 )]
+position = Vector2( 54, 133 )
+text = "Play"
+
+[node name="btnScores" parent="." instance=ExtResource( 4 )]
+position = Vector2( 145, 133 )
+text = "Scores"
+
+[node name="btnQuit" parent="." instance=ExtResource( 4 )]
+position = Vector2( 231, 133 )
+text = "Quit"
+
+[connection signal="clicked" from="btnPlay" to="." method="_on_btnPlay_clicked"]
+[connection signal="clicked" from="btnScores" to="." method="_on_btnScores_clicked"]
+[connection signal="clicked" from="btnQuit" to="." method="_on_btnQuit_clicked"]
