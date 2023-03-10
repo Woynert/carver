@@ -64,19 +64,14 @@ func collisions():
 	if (point):
 		point.queue_free()
 		GlobalState.add_score()
+		GameAudio.play_sound("point", 1, -20)
 		
 	# obstacle
 	if (Rect2Col.collision_check(self, global_position, "enemy")):
 		GlobalState.die()
+		GameAudio.play_sound("collision")
 
 func custom_move(speed: Vector2):
-	
-	
-	"""
-	var entity = Rect2Col.collision_check(self, global_position + Vector2(0, speed.y), "enemies")
-	if (entity):
-		dead
-	"""
 	
 	if !Rect2Col.collision_check(self, global_position + Vector2(0, speed.y)):
 		global_position.y += speed.y

@@ -14,11 +14,13 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 	):
 		print("released")
 		emit_signal("clicked")
+		GameAudio.play_sound("blip2",1,-10)
 
 # hover colors
 
 func _on_Area2D_mouse_entered():
 	$Label.set("custom_colors/font_color", Color.lightgreen)
+	GameAudio.play_sound("blip1",1,-10)
 
 func _on_Area2D_mouse_exited():
 	$Label.set("custom_colors/font_color", Color.white)

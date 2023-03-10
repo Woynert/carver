@@ -98,6 +98,26 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.7, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "levelcompleted1" ],
+"method": "play_sound"
+}, {
+"args": [ "deploywings" ],
+"method": "play_sound"
+}, {
+"args": [ "jump" ],
+"method": "play_sound"
+} ]
+}
 
 [node name="Stage1" type="Node2D"]
 script = ExtResource( 8 )
@@ -165,7 +185,6 @@ __meta__ = {
 }
 
 [node name="Car1" type="Sprite" parent="actors/car"]
-visible = false
 texture = ExtResource( 6 )
 
 [node name="Car1-fly" type="Sprite" parent="actors/car"]
