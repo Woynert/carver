@@ -1,5 +1,5 @@
 # Carver
-A short game about a flying car.
+A short game about a flying car. Made with Godot, Pixelorama, ChipTone, and LMMS.
 
 # Screenshots
 
