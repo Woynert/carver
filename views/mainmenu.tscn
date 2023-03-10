@@ -16,19 +16,19 @@ __meta__ = {
 }
 
 [node name="Game-title1" type="Sprite" parent="."]
-position = Vector2( 139, 97 )
+position = Vector2( 140, 97 )
 texture = ExtResource( 3 )
 
 [node name="btnPlay" parent="." instance=ExtResource( 4 )]
-position = Vector2( 54, 133 )
+position = Vector2( 54, 122 )
 text = "Play"
 
 [node name="btnScores" parent="." instance=ExtResource( 4 )]
-position = Vector2( 145, 133 )
+position = Vector2( 140, 122 )
 text = "Scores"
 
 [node name="btnQuit" parent="." instance=ExtResource( 4 )]
-position = Vector2( 231, 133 )
+position = Vector2( 226, 122 )
 text = "Quit"
 
 [connection signal="clicked" from="btnPlay" to="." method="_on_btnPlay_clicked"]
