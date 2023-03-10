@@ -12,7 +12,7 @@ func _on_Timer_timeout():
 	obstacles = []
 	obstacles.append_array(obstacles_easy)
 	
-	if (GlobalState.get_score() >= GlobalState.SCORE_HARD_TOGGLE):
+	if (GlobalState.get_score() >= ((GlobalState.stage -1) * GlobalState.score_finish_stage + GlobalState.SCORE_HARD_TOGGLE)):
 		obstacles.append_array(obstacles_hard)
 	
 	# pick random obstacle
